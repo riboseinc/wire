@@ -1,0 +1,15 @@
+class Timestamps {
+  definition { Lifecycle instants of a news item, all ISO 8601 with offset. }
+  +created: Iso8601DateTime {
+    definition { When the item was first authored. }
+  }
+  +updated: Iso8601DateTime[0..1] {
+    definition { When the item content was last changed. }
+  }
+  +published: Iso8601DateTime[0..1] {
+    definition {
+      When the item was published to the wire. Absent while the item
+      is draft or scheduled.
+    }
+  }
+}

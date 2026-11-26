@@ -1,0 +1,26 @@
+# Profile: news/1.0
+# Narrowing of BasicDocument for the body of a wire news item.
+# Rules inherited from basicdoc: a profile may only narrow the base --
+# exclude constructs, tighten cardinalities, subset enumerations,
+# restrict register keys. It may never widen, add, or rename.
+# Extensions (the wire envelope) live ABOVE this profile as the
+# models/*.lml specialization modules in this repository.
+profile: news/1.0
+base: basicdoc
+
+# Amendment and revision machinery never appears in a news body.
+exclude:
+  - AmendBlock
+  - NewContentBlock
+  - ReferenceToVariable
+
+# A news section always carries at least one block of content.
+constrain:
+  BasicSection.blocks: "1..*"
+
+# Register-key vocabulary permitted in news bodies.
+register:
+  permit:
+    - id
+    - class
+    - lang

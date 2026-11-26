@@ -1,0 +1,15 @@
+class MediaRendition {
+  definition {
+    A derived variant of a media asset, such as a 16:9 crop. Never
+    hand-authored; produced by the wire build.
+  }
+  +variant: String {
+    definition { Variant name, e.g. `16x9`, `1x1`, `4x3`, `original`. }
+  }
+  +href: String {
+    definition { Item-bundle-relative path of the rendition file. }
+  }
+  +size: ImageSizeType[0..1] {
+    definition { Pixel dimensions of the rendition. }
+  }
+}

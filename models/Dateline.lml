@@ -1,0 +1,15 @@
+class Dateline {
+  definition {
+    The place and date a news item is filed from, in wire-service style,
+    e.g. "Hong Kong — 1 September 2026".
+  }
+  +place: String {
+    definition { City or locality name, unlocalized proper noun. }
+  }
+  +country: Iso3166Code[0..1] {
+    definition { ISO 3166 code of the filing country. }
+  }
+  +date: Iso8601DateTime {
+    definition { Filing date and time, ISO 8601 with offset. }
+  }
+}

@@ -1,0 +1,20 @@
+class BodySource {
+  definition {
+    Pointer to the markup source of a news item's body. The wire
+    interchanges markup, never rendered HTML. `md` outputs are derived
+    by the build from the canonical `adoc` source and are never
+    hand-authored.
+  }
+  +format: String {
+    definition { Markup format of the file: `adoc` (canonical) or `md` (derived). }
+  }
+  +profile: String {
+    definition {
+      BasicDocument profile the parsed body must satisfy; `news` for
+      wire items.
+    }
+  }
+  +path: String {
+    definition { Item-bundle-relative path to the markup source file. }
+  }
+}

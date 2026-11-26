@@ -1,0 +1,7 @@
+/.bundle/
+/tmp/
+/vendor/bundle/
+/.wire-cache/
+node_modules/
+*.gem
+.DS_Store

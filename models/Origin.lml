@@ -1,0 +1,12 @@
+class Origin {
+  definition {
+    The site of the network that owns a story. The origin's rendering
+    is the canonical one; every other rendering links to it.
+  }
+  +site: String {
+    definition { Identifier from `registries/sites.yaml`, e.g. `ribose-com`. }
+  }
+  +canonical: Uri {
+    definition { Canonical URL of the story on the origin site. }
+  }
+}

@@ -1,0 +1,29 @@
+= Ribose introduces an interoperable news wire format
+
+Ribose today announced a common news interchange format for its network
+of technology sites, replacing build-time git federation with a
+wire-service model.
+
+
+== Why a wire
+
+The previous approach cloned peer site repositories at build time,
+coupling every build to repository infrastructure operations. The wire
+decouples authoring from distribution:
+
+* Articles are defined once, in an envelope of wire-service metadata
+  with encapsulated media and links.
+* Sites read a published bundle over HTTP; nothing clones anything.
+* The story body is markup, profiled against the BasicDocument `news`
+  profile; rendered HTML never travels the wire.
+
+== What ships in an item
+
+Every item carries headline variants, dateline, embargo, language
+editions, media with alt text and credits, press contacts, rights, and
+integrity values.
+
+////
+Body must conform to profiles/news.yaml. Amendment constructs are
+excluded; every section carries content.
+////

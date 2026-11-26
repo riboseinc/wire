@@ -1,0 +1,8 @@
+# Editorial categories for wire items.
+values:
+  - release      # software release announcements
+  - advisory     # security advisories (cross-posted from the CNA feed)
+  - milestone    # project and program milestones
+  - research     # research findings and publications
+  - event        # events, talks, participation
+  - statement    # organizational statements

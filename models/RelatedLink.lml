@@ -1,0 +1,16 @@
+class RelatedLink {
+  definition {
+    A typed external link related to a news item. Relation types come
+    from `vocabularies/link-relations.yaml` and follow the semantics of
+    HTML `rel` and ninjs `uri` types.
+  }
+  +rel: String {
+    definition { Relation type: about, source, alternate, canonical. }
+  }
+  +href: Uri {
+    definition { Target of the link. }
+  }
+  +title: LocalizedString[0..1] {
+    definition { Human-readable title of the target. }
+  }
+}

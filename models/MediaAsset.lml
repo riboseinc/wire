@@ -1,0 +1,43 @@
+class MediaAsset {
+  definition {
+    A media asset encapsulated in a news item. Self-contained: the
+    binary lives in the item bundle, the semantics travel with the
+    asset. Referenced from the body by `id`.
+  }
+  +id: String {
+    definition { Stable identifier referenced by the body, e.g. `hero`. }
+  }
+  +role: String[0..1] {
+    definition {
+      Usage role from `vocabularies/media-roles.yaml`: hero, figure,
+      logo, thumbnail.
+    }
+  }
+  +href: String {
+    definition { Item-bundle-relative path or absolute URI of the asset. }
+  }
+  +mimeType: String {
+    definition { IANA media type of the asset, e.g. `image/svg+xml`. }
+  }
+  +altText: LocalizedString[0..1] {
+    definition { Alternative text; mandatory for images used as content. }
+  }
+  +caption: LocalizedString[0..1] {
+    definition { Caption displayed beneath the asset. }
+  }
+  +credit: String[0..1] {
+    definition { Attribution line for the asset, e.g. photographer. }
+  }
+  +license: String[0..1] {
+    definition { License of the asset as an SPDX identifier or URL. }
+  }
+  +size: ImageSizeType[0..1] {
+    definition { Pixel dimensions of the asset, when applicable. }
+  }
+  +renditions: MediaRendition[0..*] {
+    definition {
+      Alternative crops or resolutions of the same asset, derived at
+      build time from the original.
+    }
+  }
+}

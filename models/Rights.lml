@@ -1,0 +1,9 @@
+class Rights {
+  definition { License and copyright information of a news item. }
+  +license: String {
+    definition { License of the article content as an SPDX identifier or URL. }
+  }
+  +holder: String {
+    definition { Copyright holder. }
+  }
+}

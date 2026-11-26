@@ -1,0 +1,19 @@
+class Author {
+  definition {
+    A person or organization credited with a news item. Deliberately
+    lighter than the full bibliographic contributor model: wire stories
+    need credit lines, not citation records.
+  }
+  +name: String {
+    definition { Display name of the author. }
+  }
+  +email: String[0..1] {
+    definition { Contact email of the author, if public. }
+  }
+  +organization: String[0..1] {
+    definition { Organization the author represents. }
+  }
+  +uri: Uri[0..1] {
+    definition { Public profile page of the author. }
+  }
+}

@@ -1,0 +1,138 @@
+class NewsItem {
+  definition {
+    A self-contained news article exchanged over the Ribose news wire.
+    The envelope follows wire-service semantics (IPTC NewsML-G2 / ninjs,
+    Business Wire's NewsML profile): headline, dateline, embargo, language
+    editions, encapsulated media with credits, distribution targets, and
+    integrity values. The article body is a BasicDocument carried in
+    source (markup) form through `body` and validated against the `news`
+    profile of BasicDocument. Rendered forms are never interchanged.
+  }
+  +id: String {
+    definition {
+      Stable identifier of this item as a URN, e.g.
+      "`urn:ribose:news:2026-09:metanorma-2-0`". Immutable across
+      versions; identifies the story, not the version.
+    }
+  }
+  +version: Integer {
+    definition {
+      Monotonically increasing version of the story's content.
+      Corrections and retractions bump the version and set `supersedes`.
+    }
+  }
+  +status: String {
+    definition {
+      Lifecycle state; one of the values in `vocabularies/status.yaml`:
+      draft, scheduled, published, corrected, retracted.
+    }
+  }
+  +supersedes: String[0..1] {
+    definition {
+      The `id` of the item content this version replaces. Present on
+      corrected and retracted items; absent on first publication.
+    }
+  }
+  +guid: UniqueIdentifier[0..1] {
+    definition {
+      Per-version GUID used to track interactions with the item without
+      depending on the wire registry. Differs from `id`, which is stable.
+    }
+  }
+  +headline: LocalizedString {
+    definition { The main headline of the article. }
+  }
+  +subheadline: LocalizedString[0..1] {
+    definition { Secondary headline beneath the main headline. }
+  }
+  +shortHeadline: LocalizedString[0..1] {
+    definition {
+      Headline of at most 100 characters, for wire listings, search, and
+      social cards.
+    }
+  }
+  +dateline: Dateline {
+    definition { City and date the story is filed from, wire-style. }
+  }
+  +embargo: Iso8601DateTime[0..1] {
+    definition {
+      Earliest instant at which the item may appear in a wire manifest
+      or on any site. Publishing systems must not list the item before
+      this time.
+    }
+  }
+  +language: Iso639Code {
+    definition { Language of this instance of the story. }
+  }
+  +editionOf: String[0..1] {
+    definition {
+      The `id` of the original edition when this item is a translation.
+      Translations keep their own `id` and `language`; sites cross-link
+      editions with hreflang.
+    }
+  }
+  +origin: Origin {
+    definition {
+      The site that owns the story and its canonical URL. All other
+      renderings point here.
+    }
+  }
+  +distribution: String[0..*] {
+    definition {
+      Site registry identifiers permitted to render the full body.
+      Empty means the origin site only. The hub may always render a card.
+    }
+  }
+  +subjects: String[0..*] {
+    definition {
+      Editorial categories from `vocabularies/subjects.yaml`
+      (release, advisory, milestone, research, event).
+    }
+  }
+  +topics: String[0..*] {
+    definition {
+      Portfolio registry project identifiers this story concerns, e.g.
+      `metanorma`, `rnp`. Drives cross-links on technology pages.
+    }
+  }
+  +authors: Author[0..*] {
+    definition { People or organizations credited with the story. }
+  }
+  +contacts: MediaContact[0..*] {
+    definition { Press contacts for this story, wire-style. }
+  }
+  +media: MediaAsset[0..*] {
+    definition {
+      Encapsulated media assets shipped with the item. Every asset
+      carries alt text, and where applicable caption, credit, and
+      license. Assets are referenced from the body by `id`.
+    }
+  }
+  +links: RelatedLink[0..*] {
+    definition { Typed external links (about, source, alternate). }
+  }
+  +boilerplate: BoilerplateRef[0..*] {
+    definition {
+      References to reusable, versioned "About X" blocks maintained in
+      `boilerplate/`, appended to the rendered story.
+    }
+  }
+  +rights: Rights {
+    definition { License and copyright of the article content. }
+  }
+  +integrityValue: IntegrityValue[0..*] {
+    definition {
+      Digital signature over the item, enabling recipients to verify
+      authenticity. Reuses the BasicDocument integrity model.
+    }
+  }
+  +timestamps: Timestamps {
+    definition { Created, updated, and published instants. }
+  }
+  +body: BodySource {
+    definition {
+      Pointer to the markup source of the article body. The parsed
+      body must conform to the `news` profile of BasicDocument.
+    }
+  }
+}

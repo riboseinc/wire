@@ -1,0 +1,69 @@
+---
+id: urn:ribose:news:2026-09-02:ribose-wire-format
+version: 1
+status: draft
+headline:
+  language:
+  - en
+  content: Ribose introduces an interoperable news wire format
+subheadline:
+  language:
+  - en
+  content: Wire-service semantics on an open document model, ending build-time git
+    federation across the site network
+shortHeadline:
+  language:
+  - en
+  content: Ribose launches news wire format
+dateline:
+  place: Hong Kong
+  country: HK
+  date: '2026-09-01T09:00:00+08:00'
+language: en
+origin:
+  site: ribose-com
+  canonical: https://www.ribose.com/news/ribose-wire-format/
+distribution:
+- ribose-com
+- metanorma-org
+- lutaml
+- pubid-com
+subjects:
+- milestone
+authors:
+- name: Ribose
+  email: open.source@ribose.com
+  organization: Ribose
+contacts:
+- name: Ribose Media
+  email: press@ribose.com
+media:
+- id: hero
+  role: hero
+  href: media/hero.svg
+  mimeType: image/svg+xml
+  altText:
+    language:
+    - en
+    content: Stylized wire diagram of the Ribose news network
+  credit: Ribose
+  license: CC-BY-4.0
+links:
+- rel: about
+  href: https://www.ribose.com/
+  title:
+    language:
+    - en
+    content: About Ribose
+boilerplate:
+- id: about-ribose
+rights:
+  license: CC-BY-4.0
+  holder: Ribose Group Inc.
+timestamps:
+  created: '2026-08-30T12:00:00+08:00'
+  published: '2026-08-30T18:00:00+08:00'
+body:
+  format: adoc
+  profile: news
+  path: body.adoc

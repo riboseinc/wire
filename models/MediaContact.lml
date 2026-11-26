@@ -1,0 +1,15 @@
+class MediaContact {
+  definition {
+    A press contact for a news item, in wire-service tradition. The
+    contact to call about the story, not necessarily its author.
+  }
+  +name: String {
+    definition { Display name of the contact. }
+  }
+  +email: String[0..1] {
+    definition { Email address of the contact. }
+  }
+  +phone: String[0..1] {
+    definition { Telephone number in E.164 or human-readable form. }
+  }
+}

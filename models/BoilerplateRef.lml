@@ -1,0 +1,10 @@
+class BoilerplateRef {
+  definition {
+    Reference to a reusable "About X" block in `boilerplate/`. Blocks
+    are versioned in place and re-rendered wherever referenced, so a
+    corrected description propagates to every story that cites it.
+  }
+  +id: String {
+    definition { Identifier of the boilerplate block, e.g. `about-ribose`. }
+  }
+}

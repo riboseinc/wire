@@ -1,0 +1,6 @@
+# Usage roles of media assets in a wire item.
+values:
+  - hero       # lead image of the story
+  - figure     # in-body illustration
+  - logo       # organization or project logo
+  - thumbnail  # listing/card image

@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gem:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+      - run: bundle exec rspec
+
+  data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: publish output is well-formed
+        run: |
+          node -e "const i = require('./publish/index-full.json'); if (!Array.isArray(i.articles)) process.exit(1)"
+          node -e "JSON.parse(require('fs').readFileSync('./publish/news.json', 'utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('./publish/feed.json', 'utf8'))"
+          test -f ./publish/feed.xml && test -f ./publish/newsml.xml
+      - name: sites registry parses and is well-formed
+        run: |
+          node -e "
+            const s = require('fs').readFileSync('./registries/sites.yaml', 'utf8');
+            if (!/^sites:/.test(s)) process.exit(1);
+            if (!/newsml: https:\/\//.test(s)) process.exit(1);
+          "

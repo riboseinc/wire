@@ -1,0 +1,6 @@
+# Relation types of RelatedLink, following HTML rel semantics.
+values:
+  - about      # the subject the story is about
+  - source     # primary source material
+  - alternate  # alternate representation (e.g. another edition)
+  - canonical  # preferred URL of the story

@@ -1,0 +1,64 @@
+= Ribose Wire
+
+The shared news repository for the Ribose site network: articles are
+defined once here, and every site can show them. No site ever clones
+another site's repository.
+
+== What this repository contains
+
+* `models/*.lml` -- the `NewsItem` model and supporting classes (LutaML).
+  The envelope follows news-agency practice (IPTC NewsML-G2 / ninjs,
+  Business Wire's NewsML profile); the article body is a BasicDocument
+  carried as markup (AsciiDoc), never as rendered HTML.
+* `profiles/news.yaml` -- the narrowing of BasicDocument that a news
+  body must satisfy.
+* `vocabularies/` -- closed vocabularies: status, subjects, media
+  roles, link relations.
+* `registries/sites.yaml` -- the sites that participate in news sharing.
+* `boilerplate/` -- reusable, versioned "About X" blocks.
+* `items/` -- the articles: `item.yaml` + `body.adoc` + `media/`, one
+  directory per story, organized by year and month.
+
+== Governance
+
+This repository consumes basicdoc-models (as a submodule; types are
+never vendored) and serializes `NewsItem` only through lutaml-model
+mappings -- hand-rolled converters are prohibited. NewsML-G2 XML
+support is out of scope here: it is handled by the separate
+newsmlg2-ruby effort in the lutaml organization.
+
+== Item lifecycle
+
+draft -> scheduled -> published -> corrected/retracted.
+
+Corrections and retractions create a new `version` with `supersedes`
+set; published items are never silently modified. Items appear in the
+article list only after their `embargo` time has passed.
+
+== How articles reach the sites (planned)
+
+When articles are merged, a CI job validates them (model load,
+profile conformance, vocabulary closure, media presence) and publishes
+them as ordinary static files, in the same way www.ribose.com itself
+is hosted:
+
+....
+/news.json                     list of published articles (the index)
+/articles/{id}/{version}/…     one folder per article version:
+                                item.yaml, body.adoc, body.md, media/
+/feed.xml   /feed.json         RSS/Atom feed and ninjs JSON feed
+....
+
+Each site, when it builds, downloads over plain HTTPS the articles it
+is allowed to show (per each article's `distribution` list), renders
+them as its own pages, and links back to the site where the article
+originated. After publication, a webhook asks subscribed sites to
+rebuild. There is no server and no database -- just static files on
+the existing static hosting.
+
+== Status
+
+This repository currently contains the contract: models, profile,
+vocabularies, registries, and one sample article. Not yet built: the
+Ruby loader gem and its specs, the CI validation and publishing step,
+and the site-side readers.

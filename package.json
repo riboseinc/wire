@@ -1,0 +1,14 @@
+{
+  "name": "@riboseinc/wire",
+  "version": "0.3.0",
+  "description": "News interchange data for the Ribose site network: published wire output and sites registry",
+  "exports": {
+    ".": "./publish/index-full.json",
+    "./sites": "./registries/sites.yaml"
+  },
+  "files": [
+    "publish/index-full.json",
+    "registries/sites.yaml"
+  ],
+  "private": false
+}

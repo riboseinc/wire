@@ -1,0 +1,12 @@
+# Lifecycle states of a wire item.
+# draft: internal; never leaves the repository.
+# scheduled: approved; listed in the manifest only after `embargo`/`publish`.
+# published: live on the wire.
+# corrected: new version fixing a prior one; `supersedes` is set.
+# retracted: withdrawn; remains visible with a retraction notice.
+values:
+  - draft
+  - scheduled
+  - published
+  - corrected
+  - retracted

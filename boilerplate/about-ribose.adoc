@@ -1,0 +1,7 @@
+---
+id: about-ribose
+---
+Ribose is an open technology company. Its open-source technologies --
+from standards publication and modelling to fonts, cryptography, and
+language processing -- are used by standards organizations, governments,
+and enterprises worldwide. https://www.ribose.com[www.ribose.com]
