@@ -54,3 +54,12 @@ sites:
     # Static NewsML-G2 spoke feed (@riboseinc/newsml-spoke); posts land
     # under src/content/news/ on konneal/konneal.github.io.
     newsml: https://www.konneal.org/news-data/newsml.xml
+  - id: fontist-org
+    name: Fontist
+    url: https://www.fontist.org
+    type: product
+    news_path: /blog/
+    # Static NewsML-G2 spoke feed (newsmlg2 CLI emission on
+    # fontist/fontist.github.io); the hub pulls this index and imports
+    # full articles at build time.
+    newsml: https://www.fontist.org/news-data/newsml.xml
