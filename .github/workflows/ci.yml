@@ -12,7 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
+          # newsmlg2 (gem dependency) declares required_ruby_version >= 3.3
+          ruby-version: "3.3"
           bundler-cache: true
       - run: bundle exec rspec
 
@@ -33,6 +34,6 @@ jobs:
         run: |
           node -e "
             const s = require('fs').readFileSync('./registries/sites.yaml', 'utf8');
-            if (!/^sites:/.test(s)) process.exit(1);
+            if (!/^sites:/m.test(s)) process.exit(1);
             if (!/newsml: https:\/\//.test(s)) process.exit(1);
           "
